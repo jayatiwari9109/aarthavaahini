@@ -1,7 +1,6 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
-  "serverlessFunctionRegion": "auto",
   "functions": {
     "api/index.js": {
       "memory": 1024,
@@ -10,11 +9,15 @@
   },
   "routes": [
     {
-      "src": "^/(?!api)(.*)$",
+      "src": "^/assets/(.*)",
+      "dest": "/assets/$1",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "src": "^/(?!_next|api)(.*)",
       "dest": "/api/index.js"
     }
-  ],
-  "env": {
-    "VERCEL": "1"
-  }
+  ]
 }
