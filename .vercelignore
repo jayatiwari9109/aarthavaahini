@@ -1,0 +1,10 @@
+.wrangler
+.git
+node_modules
+src
+supabase
+*.config.*
+.env
+.env.local
+*.md
+bun.lock
