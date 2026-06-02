@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ProductPage } from "@/components/site/ProductPage";
-import { bankingProducts } from "@/data/products";
+// import { bankingProducts } from "@/data/products";
 
 export const Route = createFileRoute("/banking")({
   head: () => ({ meta: [
@@ -12,8 +12,8 @@ export const Route = createFileRoute("/banking")({
   component: () => (
     <div className="min-h-screen bg-background">
       <Header />
-      <main><ProductPage title="Banking" subtitle="Savings, current, FD, demat — sab ek hi platform pe."
-        items={bankingProducts} productType="banking" accentClass="text-[#1565C0]" /></main>
+      {/* <main><ProductPage title="Banking" subtitle="Savings, current, FD, demat — sab ek hi platform pe." */}
+        {/* // items={bankingProducts} productType="banking" accentClass="text-[#1565C0]" /></main> */}
       <Footer />
     </div>
   ),
