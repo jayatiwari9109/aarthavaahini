@@ -2190,8 +2190,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { LogOut } from "lucide-react";
 import logo from "@/assets/logo.png";
 import headingLogo from "@/assets/heading-logo.png";
-import insuranceBg from "@/assets/insurance-bg.jpg";
-import mutualFundBg from "@/assets/mutualfund-bg.jpg";
+
 export function Header() {
 const { user, role, signOut } = useAuth();
 console.log("HEADER USER:", user);
@@ -2421,7 +2420,14 @@ console.log("HEADER USER:", user);
     </Button>
   </Link>
 )}
+         <Link to="/user-dashboard">
+  User Dashboard
+</Link>
 
+<Link to="/admin-dashboard">
+  Admin Dashboard
+          </Link>
+          
             {/* APPLY NOW */}
 
             <div className="group relative">
