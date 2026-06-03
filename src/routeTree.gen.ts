@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UserDashboardRouteImport } from './routes/user-dashboard'
 import { Route as MutualFundsRouteImport } from './routes/mutual-funds'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LoansRouteImport } from './routes/loans'
@@ -18,6 +19,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CibilRouteImport } from './routes/cibil'
 import { Route as BlogsRouteImport } from './routes/blogs'
 import { Route as BankingRouteImport } from './routes/banking'
+import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -25,6 +27,11 @@ import { Route as BlogsSipGuideRouteImport } from './routes/blogs/sip-guide'
 import { Route as BlogsHomeLoanGuideRouteImport } from './routes/blogs/home-loan-guide'
 import { Route as BlogsCibilScoreRouteImport } from './routes/blogs/cibil-score'
 
+const UserDashboardRoute = UserDashboardRouteImport.update({
+  id: '/user-dashboard',
+  path: '/user-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MutualFundsRoute = MutualFundsRouteImport.update({
   id: '/mutual-funds',
   path: '/mutual-funds',
@@ -70,6 +77,11 @@ const BankingRoute = BankingRouteImport.update({
   path: '/banking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin-dashboard',
+  path: '/admin-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -105,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/admin-dashboard': typeof AdminDashboardRoute
   '/banking': typeof BankingRoute
   '/blogs': typeof BlogsRouteWithChildren
   '/cibil': typeof CibilRoute
@@ -114,6 +127,7 @@ export interface FileRoutesByFullPath {
   '/loans': typeof LoansRoute
   '/login': typeof LoginRoute
   '/mutual-funds': typeof MutualFundsRoute
+  '/user-dashboard': typeof UserDashboardRoute
   '/blogs/cibil-score': typeof BlogsCibilScoreRoute
   '/blogs/home-loan-guide': typeof BlogsHomeLoanGuideRoute
   '/blogs/sip-guide': typeof BlogsSipGuideRoute
@@ -122,6 +136,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/admin-dashboard': typeof AdminDashboardRoute
   '/banking': typeof BankingRoute
   '/blogs': typeof BlogsRouteWithChildren
   '/cibil': typeof CibilRoute
@@ -131,6 +146,7 @@ export interface FileRoutesByTo {
   '/loans': typeof LoansRoute
   '/login': typeof LoginRoute
   '/mutual-funds': typeof MutualFundsRoute
+  '/user-dashboard': typeof UserDashboardRoute
   '/blogs/cibil-score': typeof BlogsCibilScoreRoute
   '/blogs/home-loan-guide': typeof BlogsHomeLoanGuideRoute
   '/blogs/sip-guide': typeof BlogsSipGuideRoute
@@ -140,6 +156,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/admin-dashboard': typeof AdminDashboardRoute
   '/banking': typeof BankingRoute
   '/blogs': typeof BlogsRouteWithChildren
   '/cibil': typeof CibilRoute
@@ -149,6 +166,7 @@ export interface FileRoutesById {
   '/loans': typeof LoansRoute
   '/login': typeof LoginRoute
   '/mutual-funds': typeof MutualFundsRoute
+  '/user-dashboard': typeof UserDashboardRoute
   '/blogs/cibil-score': typeof BlogsCibilScoreRoute
   '/blogs/home-loan-guide': typeof BlogsHomeLoanGuideRoute
   '/blogs/sip-guide': typeof BlogsSipGuideRoute
@@ -159,6 +177,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/admin-dashboard'
     | '/banking'
     | '/blogs'
     | '/cibil'
@@ -168,6 +187,7 @@ export interface FileRouteTypes {
     | '/loans'
     | '/login'
     | '/mutual-funds'
+    | '/user-dashboard'
     | '/blogs/cibil-score'
     | '/blogs/home-loan-guide'
     | '/blogs/sip-guide'
@@ -176,6 +196,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/admin-dashboard'
     | '/banking'
     | '/blogs'
     | '/cibil'
@@ -185,6 +206,7 @@ export interface FileRouteTypes {
     | '/loans'
     | '/login'
     | '/mutual-funds'
+    | '/user-dashboard'
     | '/blogs/cibil-score'
     | '/blogs/home-loan-guide'
     | '/blogs/sip-guide'
@@ -193,6 +215,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/admin-dashboard'
     | '/banking'
     | '/blogs'
     | '/cibil'
@@ -202,6 +225,7 @@ export interface FileRouteTypes {
     | '/loans'
     | '/login'
     | '/mutual-funds'
+    | '/user-dashboard'
     | '/blogs/cibil-score'
     | '/blogs/home-loan-guide'
     | '/blogs/sip-guide'
@@ -211,6 +235,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
   BankingRoute: typeof BankingRoute
   BlogsRoute: typeof BlogsRouteWithChildren
   CibilRoute: typeof CibilRoute
@@ -220,10 +245,18 @@ export interface RootRouteChildren {
   LoansRoute: typeof LoansRoute
   LoginRoute: typeof LoginRoute
   MutualFundsRoute: typeof MutualFundsRoute
+  UserDashboardRoute: typeof UserDashboardRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/user-dashboard': {
+      id: '/user-dashboard'
+      path: '/user-dashboard'
+      fullPath: '/user-dashboard'
+      preLoaderRoute: typeof UserDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mutual-funds': {
       id: '/mutual-funds'
       path: '/mutual-funds'
@@ -285,6 +318,13 @@ declare module '@tanstack/react-router' {
       path: '/banking'
       fullPath: '/banking'
       preLoaderRoute: typeof BankingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-dashboard': {
+      id: '/admin-dashboard'
+      path: '/admin-dashboard'
+      fullPath: '/admin-dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -350,6 +390,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
   BankingRoute: BankingRoute,
   BlogsRoute: BlogsRouteWithChildren,
   CibilRoute: CibilRoute,
@@ -359,6 +400,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoansRoute: LoansRoute,
   LoginRoute: LoginRoute,
   MutualFundsRoute: MutualFundsRoute,
+  UserDashboardRoute: UserDashboardRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
